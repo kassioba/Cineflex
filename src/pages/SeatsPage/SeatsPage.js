@@ -18,21 +18,25 @@ export default function SeatsPage({
   const [cpf, setCpf] = useState([]);
   const navigate = useNavigate();
 
-  function escolherAssento(a, b, c) {
+  function escolherAssento(idAssento, dispAssento, numAssento) {
     let assentosSelecionadosCopia = [...assentosSelecionados];
     let numeroAssentoCopia = [...numeroAssento];
-    if (assentosSelecionadosCopia.includes(a)) {
-      assentosSelecionadosCopia.splice(assentosSelecionadosCopia.indexOf(a), 1);
-    } else if (b !== false) {
-      assentosSelecionadosCopia = [...assentosSelecionados, a];
+
+    if (assentosSelecionadosCopia.includes(idAssento)) {
+      assentosSelecionadosCopia.splice(
+        assentosSelecionadosCopia.indexOf(idAssento),
+        1
+      );
+    } else if (dispAssento !== false) {
+      assentosSelecionadosCopia = [...assentosSelecionados, idAssento];
     } else {
       alert("Esse assento não está disponível");
     }
 
-    if (numeroAssentoCopia.includes(c)) {
-      numeroAssentoCopia.splice(numeroAssentoCopia.indexOf(c), 1);
-    } else {
-      numeroAssentoCopia = [...numeroAssento, c];
+    if (numeroAssentoCopia.includes(numAssento)) {
+      numeroAssentoCopia.splice(numeroAssentoCopia.indexOf(numAssento), 1);
+    } else if (dispAssento !== false) {
+      numeroAssentoCopia = [...numeroAssento, numAssento];
     }
     setAssentosSelecionados(assentosSelecionadosCopia);
     setNumeroAssento(numeroAssentoCopia.sort());
